@@ -105,6 +105,61 @@
 
 ---
 
+## 3.1 REPORT IMAGES & SCREENSHOTS TRACKER
+
+### Images needed for report with captions:
+
+| # | Image Type | Caption | Status | Location |
+|---|------------|---------|--------|----------|
+| 1 | Architecture Diagram | Figure 1: Django MVT Architecture for Ipswich Retail E-commerce System | [ ] | planning/architecture.md |
+| 2 | DevOps Pipeline Diagram | Figure 2: Complete DevOps CI/CD Pipeline Workflow | [ ] | Create diagram |
+| 3 | Wireframe - Home Page | Figure 3: Home Page Wireframe - Product Catalog View | [ ] | planning/wireframes.md |
+| 4 | Wireframe - Product Detail | Figure 4: Product Detail Page Wireframe | [ ] | planning/wireframes.md |
+| 5 | Wireframe - Cart | Figure 5: Shopping Cart Page Wireframe | [ ] | planning/wireframes.md |
+| 6 | Wireframe - Checkout | Figure 6: Checkout and Order Confirmation Wireframe | [ ] | planning/wireframes.md |
+| 7 | GitHub Repository | Figure 7: GitHub Repository Structure and File Organization | [ ] | screenshots/ |
+| 8 | Git Commit History | Figure 8: Git Commit History Showing Incremental Development | [ ] | screenshots/ |
+| 9 | Dockerfile Configuration | Figure 9: Dockerfile for Containerization | [ ] | screenshots/ |
+| 10 | docker-compose.yml | Figure 10: Docker Compose Multi-Container Configuration | [ ] | screenshots/ |
+| 11 | Test Execution | Figure 11: Automated Test Suite Execution Results | [ ] | screenshots/ |
+| 12 | Test Coverage Report | Figure 12: Code Coverage Report (>80% target) | [ ] | screenshots/ |
+| 13 | GitHub Actions Workflow | Figure 13: GitHub Actions CI/CD Pipeline Configuration | [ ] | screenshots/ |
+| 14 | CI/CD Pipeline Run | Figure 14: Successful GitHub Actions Pipeline Execution | [ ] | screenshots/ |
+| 15 | Railway Dashboard | Figure 15: Railway Deployment Dashboard | [ ] | screenshots/ |
+| 16 | Railway Deployment Logs | Figure 16: Railway Deployment Logs and Status | [ ] | screenshots/ |
+| 17 | Home Page Live | Figure 17: Live Application - Home Page with Product Catalog | [ ] | screenshots/ |
+| 18 | Product Detail Live | Figure 18: Live Application - Product Detail Page | [ ] | screenshots/ |
+| 19 | Shopping Cart Live | Figure 19: Live Application - Shopping Cart Functionality | [ ] | screenshots/ |
+| 20 | Checkout Page Live | Figure 20: Live Application - Checkout Process | [ ] | screenshots/ |
+| 21 | Django Admin | Figure 21: Django Admin Panel for Product Management | [ ] | screenshots/ |
+| 22 | Application Logs | Figure 22: Application Logging and Monitoring | [ ] | screenshots/ |
+| 23 | Database Models | Figure 23: Django Models - Database Schema | [ ] | screenshots/ |
+
+### Word Count Tracking
+
+| Section | Target Words | Actual Words | Status |
+|---------|--------------|--------------|--------|
+| Title Page | - | - | [ ] |
+| Introduction | 300 | 0 | [ ] |
+| DevOps Workflow | 600 | 0 | [ ] |
+| Planning Phase | 200 | 0 | [ ] |
+| Code Phase | 200 | 0 | [ ] |
+| Build Phase | 200 | 0 | [ ] |
+| Test Phase | 200 | 0 | [ ] |
+| Deploy Phase | 200 | 0 | [ ] |
+| Monitor Phase | 200 | 0 | [ ] |
+| Benefits & Limitations | 600 | 0 | [ ] |
+| Lessons Learned | 600 | 0 | [ ] |
+| Challenges Faced | 200 | 0 | [ ] |
+| Alternative Tools | 200 | 0 | [ ] |
+| Future of DevOps | 200 | 0 | [ ] |
+| Conclusion | 120 | 0 | [ ] |
+| **TOTAL** | **~3000** | **0** | **[ ]** |
+
+**Note:** Use `wc -w filename.md` command to validate word count before submission.
+
+---
+
 ## 4. REPORT WRITING (3000 words)
 
 ### 4.1 Title Page

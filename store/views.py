@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.db.models import Q
+from decimal import Decimal
 from .models import Product, Category, Cart, CartItem, Order, OrderItem
 
 
@@ -116,8 +117,8 @@ def checkout(request):
     if request.method == 'POST':
         # Create order
         subtotal = cart_obj.get_total_price()
-        shipping = 15.00
-        tax = subtotal * 0.10
+        shipping = Decimal('15.00')
+        tax = subtotal * Decimal('0.10')
         total = subtotal + shipping + tax
 
         order = Order.objects.create(
@@ -150,8 +151,8 @@ def checkout(request):
         return redirect('store:order_confirmation', order_id=order.id)
 
     subtotal = cart_obj.get_total_price()
-    shipping = 15.00
-    tax = subtotal * 0.10
+    shipping = Decimal('15.00')
+    tax = subtotal * Decimal('0.10')
     total = subtotal + shipping + tax
 
     context = {

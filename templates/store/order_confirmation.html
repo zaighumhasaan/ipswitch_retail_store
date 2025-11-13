@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Order Confirmed - Ipswich Retail{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="text-center mb-4">
+                <div class="text-success mb-3">
+                    <i class="bi bi-check-circle-fill" style="font-size: 5rem;"></i>
+                </div>
+                <h1>Order Confirmed!</h1>
+                <p class="lead">Thank you for your order</p>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <strong>Order Number:</strong>
+                            <p>#{{ order.id }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Order Date:</strong>
+                            <p>{{ order.created_at|date:"F d, Y" }}</p>
+                        </div>
+                    </div>
+
+                    <p>A confirmation email has been sent to: <strong>{{ order.email }}</strong></p>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Order Details</h5>
+                </div>
+                <div class="card-body">
+                    <h6>Shipping to:</h6>
+                    <p>
+                        {{ order.first_name }} {{ order.last_name }}<br>
+                        {{ order.address }}<br>
+                        {{ order.city }}, {{ order.postal_code }}<br>
+                        {{ order.country }}
+                    </p>
+
+                    <h6>Payment Method:</h6>
+                    <p>{{ order.get_payment_method_display }}</p>
+
+                    <h6>Items Ordered:</h6>
+                    <ul class="list-unstyled">
+                        {% for item in order.items.all %}
+                            <li class="mb-2">
+                                {{ item.product.name }} x {{ item.quantity }}
+                                <span class="float-end">${{ item.get_total_price }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <hr>
+
+                    <div class="d-flex justify-content-between">
+                        <strong>Total:</strong>
+                        <h4 class="text-primary mb-0">${{ order.total_price }}</h4>
+                    </div>
+
+                    <div class="mt-4">
+                        <p><strong>Estimated Delivery:</strong> {{ order.created_at|date:"F d"|add:"7 days" }}, {{ order.created_at|date:"Y" }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex gap-2 justify-content-center">
+                <a href="{% url 'store:home' %}" class="btn btn-primary">
+                    <i class="bi bi-arrow-left"></i> Continue Shopping
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

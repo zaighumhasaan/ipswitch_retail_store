@@ -21,12 +21,8 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 # Copy project
 COPY . /app/
 
-# Copy and set permissions for startup script
-COPY start.sh /app/
-RUN chmod +x /app/start.sh
-
 # Expose port
 EXPOSE 8000
 
-# Run startup script
-CMD ["/app/start.sh"]
+# Run startup with Python
+CMD ["python", "start.py"]

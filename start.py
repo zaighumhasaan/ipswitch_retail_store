@@ -31,6 +31,12 @@ if __name__ == "__main__":
         "Running database migrations"
     )
 
+    # Create sample data
+    run_command(
+        "python manage.py create_sample_data",
+        "Creating sample data"
+    )
+
     # Get port from environment
     port = os.environ.get('PORT', '8000')
 

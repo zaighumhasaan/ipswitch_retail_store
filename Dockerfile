@@ -21,10 +21,12 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 # Copy project
 COPY . /app/
 
+# Copy and set permissions for startup script
+COPY start.sh /app/
+RUN chmod +x /app/start.sh
+
 # Expose port
 EXPOSE 8000
 
-# Run gunicorn
-CMD python manage.py collectstatic --noinput && \
-    python manage.py migrate --noinput && \
-    gunicorn --bind 0.0.0.0:${PORT:-8000} --workers 3 ipswich_retail.wsgi:application
+# Run startup script
+CMD ["/app/start.sh"]

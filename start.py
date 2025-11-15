@@ -37,6 +37,24 @@ if __name__ == "__main__":
         "Creating sample data"
     )
 
+    # Create default superuser if it doesn't exist
+    print("\n" + "="*50, flush=True)
+    print("Creating default superuser (if needed)", flush=True)
+    print("="*50, flush=True)
+    sys.stdout.flush()
+
+    create_superuser_cmd = """
+from django.contrib.auth import get_user_model;
+User = get_user_model();
+if not User.objects.filter(username='admin').exists():
+    User.objects.create_superuser('admin', 'admin@ipswich.com', 'admin123');
+    print('Superuser created: username=admin, password=admin123');
+else:
+    print('Superuser already exists');
+"""
+
+    subprocess.run(["python", "manage.py", "shell", "-c", create_superuser_cmd])
+
     # Get port from environment
     port = os.environ.get('PORT', '8000')
 

@@ -29,7 +29,7 @@
                 <i class="bi bi-tag"></i> {{ product.category.name }}
             </p>
 
-            <h2 class="text-primary mb-4">${{ product.price }}</h2>
+            <h2 class="text-primary mb-4">£{{ product.price }}</h2>
 
             <div class="mb-4">
                 {% if product.in_stock %}
@@ -81,7 +81,7 @@
                             {% endif %}
                             <div class="card-body">
                                 <h6 class="card-title">{{ related.name }}</h6>
-                                <h5 class="text-primary">${{ related.price }}</h5>
+                                <h5 class="text-primary">£{{ related.price }}</h5>
                             </div>
                             <div class="card-footer bg-white border-0">
                                 <a href="{% url 'store:product_detail' related.slug %}" class="btn btn-sm btn-outline-primary w-100">

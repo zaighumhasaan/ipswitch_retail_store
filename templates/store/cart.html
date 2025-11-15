@@ -41,7 +41,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <strong>${{ item.product.price }}</strong>
+                                                <strong>£{{ item.product.price }}</strong>
                                             </td>
                                             <td>
                                                 <div class="btn-group" role="group">
@@ -63,7 +63,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <strong>${{ item.get_total_price }}</strong>
+                                                <strong>£{{ item.get_total_price }}</strong>
                                             </td>
                                             <td>
                                                 <form action="{% url 'store:remove_from_cart' item.id %}" method="post">
@@ -95,17 +95,17 @@
 
                         <div class="d-flex justify-content-between mb-2">
                             <span>Subtotal:</span>
-                            <strong>${{ cart.get_total_price }}</strong>
+                            <strong>£{{ cart.get_total_price }}</strong>
                         </div>
 
                         <div class="d-flex justify-content-between mb-2">
                             <span>Shipping:</span>
-                            <strong>${{ shipping }}</strong>
+                            <strong>£{{ shipping }}</strong>
                         </div>
 
                         <div class="d-flex justify-content-between mb-3">
                             <span>Tax ({{ tax_rate|floatformat:0 }}%):</span>
-                            <strong>${{ cart.get_total_price|floatformat:2 }}</strong>
+                            <strong>£{{ cart.get_total_price|floatformat:2 }}</strong>
                         </div>
 
                         <hr>
@@ -113,7 +113,7 @@
                         <div class="d-flex justify-content-between mb-4">
                             <strong>Total:</strong>
                             <h4 class="text-primary mb-0">
-                                ${% widthratio cart.get_total_price 1 1 as subtotal %}
+                                £{% widthratio cart.get_total_price 1 1 as subtotal %}
                                 {% widthratio subtotal 10 1 as tax %}
                                 {{ subtotal|add:shipping|add:tax|floatformat:2 }}
                             </h4>

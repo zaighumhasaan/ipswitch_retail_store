@@ -52,7 +52,7 @@
                         {% for item in order.items.all %}
                             <li class="mb-2">
                                 {{ item.product.name }} x {{ item.quantity }}
-                                <span class="float-end">${{ item.get_total_price }}</span>
+                                <span class="float-end">£{{ item.get_total_price }}</span>
                             </li>
                         {% endfor %}
                     </ul>
@@ -61,7 +61,7 @@
 
                     <div class="d-flex justify-content-between">
                         <strong>Total:</strong>
-                        <h4 class="text-primary mb-0">${{ order.total_price }}</h4>
+                        <h4 class="text-primary mb-0">£{{ order.total_price }}</h4>
                     </div>
 
                     <div class="mt-4">

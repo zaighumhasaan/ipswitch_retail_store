@@ -174,7 +174,7 @@ git push -u origin master
 
 **Save to:** `screenshots/` directory
 
-### 4. Write 3000-Word Report
+### 4. 3000-Word Report
 **Structure:**
 1. Title Page (S number)
 2. Introduction (~300 words)
@@ -185,8 +185,7 @@ git push -u origin master
 7. References
 
 **Use:** Harvard referencing style
-**Track:** Word count with `wc -w` command
-**Include:** All 23 figures from image tracker
+
 
 ---
 

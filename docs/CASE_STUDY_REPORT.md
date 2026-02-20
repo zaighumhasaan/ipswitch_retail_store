@@ -1,8 +1,8 @@
-# DevOps Implementation for E-Commerce Platform: A Comprehensive Case Study
+# DevOps Implementation for E-Commerce Platform
 
-**Student Name:** [Your Name]
-**Student ID:** [Your ID]
-**Module:** DevOps Practices
+**Student Name:** Zaighum Hassan Bhatti
+**Student ID:** S301492
+**Module:** DevOps
 **Institution:** University of Suffolk
 **Date:** November 2025
 **Word Count:** 3300
@@ -13,9 +13,7 @@
 
 This case study presents a comprehensive implementation of DevOps practices in developing and deploying Ipswich Retail, a Django-based e-commerce platform. The project demonstrates the complete software development lifecycle incorporating modern DevOps methodologies including continuous integration, continuous deployment, containerization, automated testing, and cloud deployment. The application was built using Django Model-View-Template architecture, containerized using Docker, tested with automated test suites achieving high code coverage, and deployed to Railway cloud platform. The CI/CD pipeline was implemented through GitHub Actions, enabling automated testing and deployment workflows. This implementation showcases industry-standard tools and practices including version control with Git, infrastructure as code, automated testing frameworks, container orchestration, and monitoring systems. The outcomes demonstrate significant improvements in deployment frequency, reduced failure rates, and faster recovery times, validating the effectiveness of DevOps practices in modern software development environments. The project successfully bridges the gap between development and operations, creating a robust, scalable, and maintainable e-commerce solution that exemplifies modern software engineering excellence.
 
-![Image 1: Project Architecture Overview Diagram]
 
-*Figure 1: Complete architecture diagram showing Django MVT structure, Docker containers, CI/CD pipeline, and deployment infrastructure*
 
 ---
 
@@ -51,9 +49,6 @@ GitHub Actions was implemented for CI/CD pipelines due to tight integration with
 
 Railway was selected as the deployment platform for its simplified deployment process requiring minimal configuration, automatic HTTPS provisioning ensuring secure communications, built-in PostgreSQL database support eliminating need for separate database hosting, generous free tier suitable for academic projects and small applications, and GitHub integration enabling automatic deployments on code changes. Alternative platforms considered included Heroku and DigitalOcean, but Railway was chosen for its modern architecture and superior developer experience.
 
-![Image 2: Technology Stack Diagram]
-
-*Figure 2: Complete technology stack showing Django, PostgreSQL, Docker, GitHub Actions, and Railway integration*
 
 ---
 
@@ -77,13 +72,7 @@ The View layer implements application logic through eleven views handling comple
 
 The Template layer provides presentation logic using eight responsive templates implementing professional user interface. Templates use Bootstrap 5 component library for responsive grid layouts, form controls, navigation components, and utility classes. Custom CSS implements distinctive design with cyan and teal gradient color scheme avoiding generic purple gradients, Poppins and Playfair Display typography for professional appearance, smooth hover animations with transform and shadow transitions, and professional card designs with layered shadows and rounded corners.
 
-![Image 3: Django MVT Architecture Diagram]
 
-*Figure 3: Django Model-View-Template architecture showing relationship between models, views, and templates*
-
-![Image 4: Database Schema Diagram]
-
-*Figure 4: Entity-relationship diagram showing database models and their relationships*
 
 ### 2.2 DevOps Pipeline Design and Workflow
 
@@ -100,10 +89,6 @@ Deployment to staging environment provides final validation before production re
 Production deployment stage executes only on commits to master branch after all previous stages succeed, using Railway CLI for automated deployment, setting environment variables for production configuration including SECRET_KEY, DATABASE_URL, and ALLOWED_HOSTS, running database migrations on production database with backup creation, deploying new application version with zero-downtime strategy, and verifying deployment health through HTTP health checks. Automated rollback mechanisms detect failed deployments through health check failures, automatically revert to previous stable version, and notify team members through configured channels.
 
 The workflow includes comprehensive error handling at each stage with detailed logging for debugging, notifications on failures through email or messaging platforms, automatic retry logic for transient failures, and graceful degradation when possible. This robust pipeline design ensures high confidence in deployments while maintaining rapid delivery capability.
-
-![Image 5: CI/CD Pipeline Flow Diagram]
-
-*Figure 5: Complete CI/CD pipeline showing stages from code commit through automated testing to production deployment*
 
 ---
 
@@ -127,13 +112,6 @@ The OrderItem model creates historical records preserving transaction details ev
 
 Database migrations were carefully managed using Django migration framework, creating initial migrations for all models, generating subsequent migrations for model changes, testing migrations on development database before production, creating data migrations for complex schema changes, and maintaining migration history in version control enabling reproducible database states across environments.
 
-![Image 6: Django Models Code Implementation]
-
-*Figure 6: Screenshot of models.py file showing complete model definitions with fields, relationships, and methods*
-
-![Image 7: Django Admin Interface with Product Data]
-
-*Figure 7: Django admin panel showing product management interface with sample data loaded*
 
 ### 3.2 View Implementation and Business Logic
 
@@ -153,9 +131,7 @@ The authentication views implement secure user registration and login with compr
 
 All views implement CSRF protection through Django middleware, use parameterized queries through ORM preventing SQL injection, validate and sanitize user inputs preventing XSS attacks, implement proper authorization checking user permissions, and log security-relevant events for audit trails.
 
-![Image 8: Views.py Code Implementation]
 
-*Figure 8: Screenshot showing view implementations with business logic and error handling*
 
 ### 3.3 Template Development and User Interface
 
@@ -175,24 +151,6 @@ The checkout template implements comprehensive multi-section form with shipping 
 
 All templates implement accessibility best practices with semantic HTML elements, proper heading hierarchy, alt text for images, labels for form inputs, and ARIA attributes where needed. The templates are fully responsive using Bootstrap grid system and custom media queries, maintain consistent styling through shared base template and CSS variables, and implement loading states and error messages for better user experience.
 
-![Image 9: Home Page Template]
-
-*Figure 9: Screenshot of home page showing product grid, category filters, and responsive design*
-
-![Image 10: Product Detail Page]
-
-*Figure 10: Product detail page showing product information, pricing, and add to cart functionality*
-
-![Image 11: Shopping Cart Page]
-
-*Figure 11: Shopping cart showing items, quantity controls, price calculations, and checkout button*
-
-![Image 12: Checkout Page]
-
-*Figure 12: Checkout form with shipping information, payment method selection, and order summary*
-
----
-
 ## 4. DevOps Practices Implementation
 
 ### 4.1 Version Control and Collaborative Workflows
@@ -207,13 +165,7 @@ Branch protection rules were configured on master branch requiring status checks
 
 The repository README includes comprehensive project documentation with overview describing Ipswich Retail e-commerce platform, technology stack listing all frameworks and tools, installation instructions with step-by-step setup process, usage examples showing common workflows, testing instructions for running test suite, deployment guide for Railway platform, and contribution guidelines. Additional documentation includes architecture diagrams, wireframes, and detailed case study.
 
-![Image 13: GitHub Repository Structure]
 
-*Figure 13: Screenshot of GitHub repository showing folder structure, files, and README*
-
-![Image 14: Git Commit History]
-
-*Figure 14: Git commit history showing descriptive commit messages and logical progression*
 
 ### 4.2 Containerization with Docker
 
@@ -231,17 +183,6 @@ The configuration implements health checks verifying service availability throug
 
 Best practices implemented include running application as non-root user improving security, using specific image tags avoiding unexpected updates, minimizing layers through command chaining, and scanning images for vulnerabilities using Docker scan or third-party tools.
 
-![Image 15: Dockerfile Implementation]
-
-*Figure 15: Dockerfile showing multi-stage build process and optimization techniques*
-
-![Image 16: Docker Compose Configuration]
-
-*Figure 16: docker-compose.yml file showing service definitions and orchestration*
-
-![Image 17: Running Docker Containers]
-
-*Figure 17: Terminal output showing docker-compose up with all services running successfully*
 
 ### 4.3 Automated Testing and Quality Assurance
 
@@ -259,17 +200,6 @@ Test automation was integrated into CI/CD pipeline ensuring every code change is
 
 Testing best practices implemented include using Django TestCase providing database transaction rollback, creating fixtures with setUp method avoiding test interdependence, testing one thing per test method improving clarity, using descriptive test names documenting tested behavior, and separating unit and integration tests enabling selective execution.
 
-![Image 18: Test Code Implementation]
-
-*Figure 18: Screenshot of tests.py showing test cases for models, views, and integration workflows*
-
-![Image 19: Test Execution Results]
-
-*Figure 19: Terminal output showing all tests passing with execution time and coverage statistics*
-
-![Image 20: Coverage Report]
-
-*Figure 20: Coverage.py HTML report showing code coverage percentages by file and untested lines highlighted*
 
 ### 4.4 Continuous Integration and Continuous Deployment
 
@@ -289,13 +219,6 @@ The workflow includes comprehensive error handling providing actionable informat
 
 This automation reduced deployment time from theoretical thirty-minute manual process involving local testing, building Docker images, pushing to registry, SSH to server, pulling images, running migrations, and restarting services to automated five-minute deployment from commit to production availability. The automation eliminated human errors in deployment procedures including forgotten migration runs, incorrect environment variables, and version mismatches, enabled multiple deployments per day supporting rapid iteration and hotfixes, provided consistent deployment process reducing knowledge silos, and improved confidence in releases through comprehensive testing gates.
 
-![Image 21: GitHub Actions Workflow File]
-
-*Figure 21: Screenshot of ci-cd.yml workflow configuration showing jobs, steps, and triggers*
-
-![Image 22: GitHub Actions Pipeline Execution]
-
-*Figure 22: GitHub Actions interface showing successful pipeline execution with all jobs passing*
 
 ### 4.5 Monitoring, Logging, and Observability
 
@@ -317,11 +240,7 @@ Visualization and alerting provide actionable insights through dashboards displa
 
 This comprehensive monitoring approach enables proactive issue detection identifying problems before users report them, rapid incident response with detailed context for debugging, performance optimization through metrics-driven decisions, and capacity planning using historical trends.
 
-![Image 23: Application Logs]
 
-*Figure 23: Screenshot of application logs showing INFO, WARNING, and ERROR messages with timestamps and context*
-
----
 
 ## 5. Deployment and Results
 

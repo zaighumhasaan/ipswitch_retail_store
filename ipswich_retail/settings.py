@@ -28,13 +28,11 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-temp-key-for-build-on
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,.railway.app,.up.railway.app').split(',')
+# Updated for Render - replace Railway with onrender.com
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,.onrender.com').split(',')
 
-# CSRF trusted origins for Railway deployment
-CSRF_TRUSTED_ORIGINS = [
-    'https://*.railway.app',
-    'https://*.up.railway.app',
-]
+# Updated CSRF trusted origins for Render
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='https://*.onrender.com').split(',')
 
 # Application definition
 
@@ -93,6 +91,7 @@ if DATABASE_URL:
             default=DATABASE_URL,
             conn_max_age=600,
             conn_health_checks=True,
+            ssl_require=True,  # Added for Render - requires SSL for PostgreSQL
         )
     }
 else:

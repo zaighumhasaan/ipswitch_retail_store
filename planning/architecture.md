@@ -174,7 +174,7 @@ This document outlines the architecture for the Ipswich Retail e-commerce Proof 
 - GitHub Issues for bug tracking
 - Pull Request reviews
 - Commit message standards
-- Team collaboration documentation
+
 
 ### Phase 8: Monitor
 - Application logging (Django logger)

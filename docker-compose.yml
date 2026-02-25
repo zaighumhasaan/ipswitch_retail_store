@@ -7,8 +7,8 @@ services:
       - postgres_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=ipswich_retail
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=
+      - POSTGRES_PASSWORD=f9ZPLnItXfdLYrxGgNQqA4E2FRgSg5KD
     ports:
       - "5432:5432"
 
@@ -25,7 +25,7 @@ services:
       - SECRET_KEY=docker-secret-key-change-in-production
       - DEBUG=False
       - ALLOWED_HOSTS=localhost,127.0.0.1
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/ipswich_retail
+      - DATABASE_URL=postgresql://ipswich_retail_user:f9ZPLnItXfdLYrxGgNQqA4E2FRgSg5KD@dpg-d6fkueea2pns73824p3g-a/ipswich_retail
     depends_on:
       - db
 

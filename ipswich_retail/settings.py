@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-temp-key-for-build-on
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-# ALLOWED_HOSTS configuration - FIXED: Removed duplicate line
+# ALLOWED_HOSTS configuration
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,.onrender.com').split(',')
 
 # Add Render's default hostname if available
@@ -90,10 +90,11 @@ WSGI_APPLICATION = "ipswich_retail.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# Use DATABASE_URL if available (for production), otherwise use SQLite (for development)
-DATABASE_URL = config('DATABASE_URL', default=None)
+# IMPORTANT: First check environment variable directly (Render sets this)
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 if DATABASE_URL:
+    # Production database on Render
     DATABASES = {
         'default': dj_database_url.config(
             default=DATABASE_URL,
@@ -101,13 +102,28 @@ if DATABASE_URL:
             conn_health_checks=True,
         )
     }
+    print(f"Using Render PostgreSQL database")
 else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+    # Fallback to config for local development
+    DATABASE_URL = config('DATABASE_URL', default=None)
+    if DATABASE_URL:
+        DATABASES = {
+            'default': dj_database_url.config(
+                default=DATABASE_URL,
+                conn_max_age=600,
+                conn_health_checks=True,
+            )
         }
-    }
+        print("Using configured PostgreSQL database")
+    else:
+        # Local SQLite database
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.sqlite3",
+                "NAME": BASE_DIR / "db.sqlite3",
+            }
+        }
+        print("Using SQLite database (local development)")
 
 
 # Password validation

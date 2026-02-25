@@ -82,7 +82,7 @@
 - Automated testing on every push
 - Automated Docker image building
 - Code linting with flake8
-- Coverage report generation
+- Coverage report 
 - Deployment automation configured
 
 **File:** `.github/workflows/ci-cd.yml`
@@ -93,7 +93,7 @@
 3. Install dependencies (with caching)
 4. Run linting
 5. Run tests
-6. Generate coverage report
+6. coverage report
 7. Build Docker image
 8. Deploy to Railway (when on master/main)
 

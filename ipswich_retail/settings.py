@@ -26,16 +26,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-temp-key-for-build-only-replace-in-production')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-# Updated for Render - replace Railway with onrender.com
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,.railway.app,healthcheck.railway.app').split(',')ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,.railway.app,healthcheck.railway.app').split(',')
+# ALLOWED_HOSTS configuration - FIXED: Removed duplicate line
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,.onrender.com').split(',')
 
-# Updated CSRF trusted origins for Render
+# Add Render's default hostname if available
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
+# CSRF trusted origins for Render
 CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='https://*.onrender.com').split(',')
 
-# Application definition
+# Add the current site to CSRF trusted origins
+if RENDER_EXTERNAL_HOSTNAME:
+    CSRF_TRUSTED_ORIGINS.append(f'https://{RENDER_EXTERNAL_HOSTNAME}')
 
+# Application definition
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -91,7 +99,6 @@ if DATABASE_URL:
             default=DATABASE_URL,
             conn_max_age=600,
             conn_health_checks=True,
-            ssl_require=True,  # Added for Render - requires SSL for PostgreSQL
         )
     }
 else:
@@ -144,11 +151,15 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 if (BASE_DIR / "static").exists():
     STATICFILES_DIRS = [BASE_DIR / "static"]
 
+# WhiteNoise configuration
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Media files
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+# Ensure media directory exists
+os.makedirs(MEDIA_ROOT, exist_ok=True)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -159,6 +170,23 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_URL = 'store:login'
 LOGIN_REDIRECT_URL = 'store:home'
 LOGOUT_REDIRECT_URL = 'store:home'
+
+# Security settings for production
+if not DEBUG:
+    # HTTPS settings
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    
+    # HSTS settings
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    
+    # Additional security
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_BROWSER_XSS_FILTER = True
+    X_FRAME_OPTIONS = 'DENY'
 
 # Logging Configuration
 LOGGING = {
@@ -174,14 +202,6 @@ LOGGING = {
             'style': '{',
         },
     },
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse',
-        },
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
-        },
-    },
     'handlers': {
         'console': {
             'level': 'INFO',
@@ -194,23 +214,12 @@ LOGGING = {
             'filename': BASE_DIR / 'logs' / 'django.log',
             'formatter': 'verbose',
         },
-        'error_file': {
-            'level': 'ERROR',
-            'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'logs' / 'errors.log',
-            'formatter': 'verbose',
-        },
     },
     'loggers': {
         'django': {
             'handlers': ['console', 'file'],
             'level': 'INFO',
             'propagate': True,
-        },
-        'django.request': {
-            'handlers': ['error_file'],
-            'level': 'ERROR',
-            'propagate': False,
         },
         'store': {
             'handlers': ['console', 'file'],
@@ -219,3 +228,7 @@ LOGGING = {
         },
     },
 }
+
+# Create logs directory if it doesn't exist
+logs_dir = BASE_DIR / 'logs'
+logs_dir.mkdir(exist_ok=True)
